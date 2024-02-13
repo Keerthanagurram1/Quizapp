@@ -131,16 +131,24 @@ prev.addEventListener(
         }
     }
 )
-submit.addEventListener(
-    'click',()=>{
-        if(getSelected()){
-            submitted=true
-            quiz.style.display="none";
-            result.style.display="block";
-            score.innerText=answerNum + "/" + quizArray.length + " questions answered correctly"
+
+submit.addEventListener('click', () => {
+    if (getSelected()) {
+        submitted = true;
+        quiz.style.display = "none";
+        result.style.display = "block";
+        
+        let correctAnswers = 0;
+        for (let i = 0; i < quizArray.length; i++) {
+            if (userSelected[i] === quizArray[i].correct) {
+                correctAnswers++;
+            }
         }
+        
+        score.innerText = correctAnswers + "/" + quizArray.length + " questions answered correctly";
     }
-)
+});
+
 
 function getSelected(){
     let answer;
